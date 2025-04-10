@@ -1,4 +1,3 @@
-
 class ContaPoupanca extends ContaBancaria {
 	private double taxaRendimento;
 
@@ -8,6 +7,6 @@ class ContaPoupanca extends ContaBancaria {
 	}
 
 	public double calcularRendimento() {
-		return getSaldo() * taxaRendimento;
+		return getSALDO() * taxaRendimento;
 	}
 }
