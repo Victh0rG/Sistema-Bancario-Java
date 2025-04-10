@@ -8,7 +8,7 @@ public class ContaBancaria implements MovimentacaoBancaria {
 		this.saldo = saldo;
 	}
 
-	public String getNUMEROCONTA() {
+	public String getNumeroConta() {
 		return numeroConta;
 	}
 
@@ -16,7 +16,7 @@ public class ContaBancaria implements MovimentacaoBancaria {
 		this.numeroConta = numeroConta;
 	}
 
-	public double getSALDO() {
+	public double getSaldo() {
 		return saldo;
 	}
 
@@ -24,18 +24,9 @@ public class ContaBancaria implements MovimentacaoBancaria {
 		this.saldo = saldo;
 	}
 
-//	@Override
-//	public void DEPOSITAR(double valor) {
-//		if (valor != 0) {
-//			saldo += valor;
-//			System.out.println("o valor do Saldo é : " + saldo);
-//		} else {
-//			System.out.println("Deposite um valor maior que zero!");
-//		}
-//	}
 
 	@Override
-	public void DEPOSITAR(double valor) {
+	public void depositar(double valor) {
 		// inversao de if
 		if (valor == 0) {
 			System.out.println("Deposite um valor maior que zero!");
@@ -45,19 +36,9 @@ public class ContaBancaria implements MovimentacaoBancaria {
 		System.out.println("o valor do Saldo é : " + saldo);
 	}
 
-//	@Override
-//	public void SACAR(double valor) throws SaldoInsuficienteException {
-//		if (valor != 0 || valor < saldo) {
-//			saldo -= valor;
-//
-//			System.out.println("Seu saldo é : " + saldo);
-//		} else {
-//			throw new SaldoInsuficienteException("Saldo insuficiente para o saque");
-//		}
-//	}
 
 	@Override
-	public boolean SACAR(double valor) throws SaldoInsuficienteException {
+	public boolean sacar(double valor) throws SaldoInsuficienteException {
 		// inversao de if
 		if (valor == 0 || valor > saldo) {
 			throw new SaldoInsuficienteException("Saldo insuficiente para o saque.");
@@ -70,11 +51,11 @@ public class ContaBancaria implements MovimentacaoBancaria {
 	}
 
 	@Override
-	public boolean TRANSFERIR(ContaBancaria destino, double valor) throws SaldoInsuficienteException {
-		if (!SACAR(valor)) {
+	public boolean transferir(ContaBancaria destino, double valor) throws SaldoInsuficienteException {
+		if (!sacar(valor)) {
 			throw new SaldoInsuficienteException("Transferência falhou. Saldo insuficiente.");
         }
-		destino.DEPOSITAR(valor);
+		destino.depositar(valor);
 		System.out.println("Transferência de R$" + valor + " realizada com sucesso de "
 				+ numeroConta + " para " + destino.numeroConta);
 		return true;
