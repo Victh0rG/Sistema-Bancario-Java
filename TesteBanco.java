@@ -33,15 +33,15 @@ public class TesteBanco {
 
         JTextField amountCorrenteField = new JTextField(10);
         JTextField amountPoupancaField = new JTextField(10);
-        JLabel balanceLabelCorrente = new JLabel("Saldo Conta Corrente: " + contaCorrente.getSALDO());
-        JLabel balanceLabelPoupanca = new JLabel("Saldo Conta Poupança: " + contaPoupanca.getSALDO());
+        JLabel balanceLabelCorrente = new JLabel("Saldo Conta Corrente: " + contaCorrente.getSaldo());
+        JLabel balanceLabelPoupanca = new JLabel("Saldo Conta Poupança: " + contaPoupanca.getSaldo());
 
         // Ação para depósito na conta corrente
         depositCorrenteButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 double amount = Double.parseDouble(amountCorrenteField.getText());
-                contaCorrente.DEPOSITAR(amount);
-                balanceLabelCorrente.setText("Saldo Conta Corrente: " + contaCorrente.getSALDO());
+                contaCorrente.depositar(amount);
+                balanceLabelCorrente.setText("Saldo Conta Corrente: " + contaCorrente.getSaldo());
             }
         });
 
@@ -50,8 +50,8 @@ public class TesteBanco {
             public void actionPerformed(ActionEvent e) {
                 try {
                     double amount = Double.parseDouble(amountCorrenteField.getText());
-                    contaCorrente.SACAR(amount);
-                    balanceLabelCorrente.setText("Saldo Conta Corrente: " + contaCorrente.getSALDO());
+                    contaCorrente.sacar(amount);
+                    balanceLabelCorrente.setText("Saldo Conta Corrente: " + contaCorrente.getSaldo());
                 } catch (SaldoInsuficienteException ex) {
                     JOptionPane.showMessageDialog(frame, ex.getMessage());
                 }
@@ -62,8 +62,8 @@ public class TesteBanco {
         depositPoupancaButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 double amount = Double.parseDouble(amountPoupancaField.getText());
-                contaPoupanca.DEPOSITAR(amount);
-                balanceLabelPoupanca.setText("Saldo Conta Poupança: " + contaPoupanca.getSALDO());
+                contaPoupanca.depositar(amount);
+                balanceLabelPoupanca.setText("Saldo Conta Poupança: " + contaPoupanca.getSaldo());
             }
         });
 
@@ -72,8 +72,8 @@ public class TesteBanco {
             public void actionPerformed(ActionEvent e) {
                 try {
                     double amount = Double.parseDouble(amountPoupancaField.getText());
-                    contaPoupanca.SACAR(amount);
-                    balanceLabelPoupanca.setText("Saldo Conta Poupança: " + contaPoupanca.getSALDO());
+                    contaPoupanca.sacar(amount);
+                    balanceLabelPoupanca.setText("Saldo Conta Poupança: " + contaPoupanca.getSaldo());
                 } catch (SaldoInsuficienteException ex) {
                     JOptionPane.showMessageDialog(frame, ex.getMessage());
                 }
@@ -85,22 +85,23 @@ public class TesteBanco {
             public void actionPerformed(ActionEvent e) {
                 try {
                     double amount = Double.parseDouble(amountPoupancaField.getText());
-                    contaPoupanca.TRANSFERIR(contaCorrente, amount);
-                    balanceLabelPoupanca.setText("Saldo Conta Poupança: " + contaPoupanca.getSALDO());
-                    balanceLabelCorrente.setText("Saldo Conta Corrente: " + contaCorrente.getSALDO());
+                    contaPoupanca.transferir(contaCorrente, amount);
+                    balanceLabelPoupanca.setText("Saldo Conta Poupança: " + contaPoupanca.getSaldo());
+                    balanceLabelCorrente.setText("Saldo Conta Corrente: " + contaCorrente.getSaldo());
                 } catch (SaldoInsuficienteException ex) {
                     JOptionPane.showMessageDialog(frame, ex.getMessage());
                 }
             }
         });
+
         // Ação para transferir Corrente para Conta (pendente)
         TransferirCorrentePoupancaButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
                     double amount = Double.parseDouble(amountCorrenteField.getText());
-                    contaCorrente.TRANSFERIR(contaPoupanca, amount);
-                    balanceLabelCorrente.setText("Saldo Conta Corrente: " + contaCorrente.getSALDO());
-                    balanceLabelPoupanca.setText("Saldo Conta Poupança: " + contaPoupanca.getSALDO());
+                    contaCorrente.transferir(contaPoupanca, amount);
+                    balanceLabelCorrente.setText("Saldo Conta Corrente: " + contaCorrente.getSaldo());
+                    balanceLabelPoupanca.setText("Saldo Conta Poupança: " + contaPoupanca.getSaldo());
                 } catch (SaldoInsuficienteException ex) {
                     JOptionPane.showMessageDialog(frame, ex.getMessage());
                 }
