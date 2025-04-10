@@ -10,10 +10,10 @@ class ContaCorrente extends ContaBancaria {
 	}
 
 	@Override
-	public void SACAR(double valor) throws SaldoInsuficienteException {
-		if (valor > getSALDO() + limiteChequeEspecial) {
+	public void sacar(double valor) throws SaldoInsuficienteException {
+		if (valor > getSaldo() + limiteChequeEspecial) {
 			throw new SaldoInsuficienteException("Saldo insuficiente.");
 		}
-		setSaldo(getSALDO() - valor);
+		setSaldo(getSaldo() - valor);
 	}
 }
