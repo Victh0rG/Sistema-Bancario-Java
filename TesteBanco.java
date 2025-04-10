@@ -14,17 +14,18 @@ public class TesteBanco {
         frame.setIconImage(logo.getImage());
         frame.setTitle("Sistema Bancário");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(650, 300);
+        frame.setSize(710, 300);
         frame.setLayout(new FlowLayout());
 
         // Componentes da interface gráfica
 
         // Componentes Corrente
+        JButton TransferirPoupancaCorrenteButton = new JButton("Transferir");
         JButton depositCorrenteButton = new JButton("Depositar");
         JButton withdrawCorrenteButton = new JButton("Sacar");
 
         //Componentes Poupanca
-        JButton TransferirButton = new JButton("Transferir");
+        JButton TransferirCorrentePoupancaButton = new JButton("Transferir");
 
         JButton depositPoupancaButton = new JButton("Depositar");
         JButton withdrawPoupancaButton = new JButton("Sacar");
@@ -79,12 +80,26 @@ public class TesteBanco {
             }
         });
 
-        // Ação para transferir (pendente)
-        TransferirButton.addActionListener(new ActionListener() {
+        // Ação para transferir Poupanca Para Corrente (pendente)
+        TransferirPoupancaCorrenteButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
                     double amount = Double.parseDouble(amountPoupancaField.getText());
-                    contaPoupanca.SACAR(amount);
+                    contaPoupanca.TRANSFERIR(contaCorrente, amount);
+                    balanceLabelPoupanca.setText("Saldo Conta Poupança: " + contaPoupanca.getSALDO());
+                    balanceLabelCorrente.setText("Saldo Conta Corrente: " + contaCorrente.getSALDO());
+                } catch (SaldoInsuficienteException ex) {
+                    JOptionPane.showMessageDialog(frame, ex.getMessage());
+                }
+            }
+        });
+        // Ação para transferir Corrente para Conta (pendente)
+        TransferirCorrentePoupancaButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    double amount = Double.parseDouble(amountCorrenteField.getText());
+                    contaCorrente.TRANSFERIR(contaPoupanca, amount);
+                    balanceLabelCorrente.setText("Saldo Conta Corrente: " + contaCorrente.getSALDO());
                     balanceLabelPoupanca.setText("Saldo Conta Poupança: " + contaPoupanca.getSALDO());
                 } catch (SaldoInsuficienteException ex) {
                     JOptionPane.showMessageDialog(frame, ex.getMessage());
@@ -105,16 +120,17 @@ public class TesteBanco {
         frame.add(amountCorrenteField);
         frame.add(depositCorrenteButton);
         frame.add(withdrawCorrenteButton);
+        frame.add(TransferirCorrentePoupancaButton);
         frame.add(balanceLabelCorrente);
 
         frame.add(new JLabel("Valor Poupança:"));
         frame.add(amountPoupancaField);
         frame.add(depositPoupancaButton);
         frame.add(withdrawPoupancaButton);
+        frame.add(TransferirPoupancaCorrenteButton);
         frame.add(balanceLabelPoupanca);
 
         frame.add(rendimentoButton);
-        frame.add(TransferirButton);
 
         frame.setVisible(true);
     }
