@@ -22,15 +22,15 @@ public class TesteBanco {
         JButton rendimentoButton = new JButton("Calcular Rendimento");
 
         JTextField amountField = new JTextField(10);
-        JLabel balanceLabelCorrente = new JLabel("Saldo Conta Corrente: " + contaCorrente.getSALDO());
-        JLabel balanceLabelPoupanca = new JLabel("Saldo Conta Poupança: " + contaPoupanca.getSALDO());
+        JLabel balanceLabelCorrente = new JLabel("Saldo Conta Corrente: " + contaCorrente.getSaldo());
+        JLabel balanceLabelPoupanca = new JLabel("Saldo Conta Poupança: " + contaPoupanca.getSaldo());
 
         // Ação para depósito na conta corrente
         depositButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 double amount = Double.parseDouble(amountField.getText());
-                contaCorrente.DEPOSITAR(amount);
-                balanceLabelCorrente.setText("Saldo Conta Corrente: " + contaCorrente.getSALDO());
+                contaCorrente.depositar(amount);
+                balanceLabelCorrente.setText("Saldo Conta Corrente: " + contaCorrente.getSaldo());
             }
         });
 
@@ -39,8 +39,8 @@ public class TesteBanco {
             public void actionPerformed(ActionEvent e) {
                 try {
                     double amount = Double.parseDouble(amountField.getText());
-                    contaCorrente.SACAR(amount);
-                    balanceLabelCorrente.setText("Saldo Conta Corrente: " + contaCorrente.getSALDO());
+                    contaCorrente.sacar(amount);
+                    balanceLabelCorrente.setText("Saldo Conta Corrente: " + contaCorrente.getSaldo());
                 } catch (SaldoInsuficienteException ex) {
                     JOptionPane.showMessageDialog(frame, ex.getMessage());
                 }
