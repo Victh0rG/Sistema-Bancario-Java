@@ -8,7 +8,7 @@ public class ContaBancaria implements MovimentacaoBancaria {
 		this.saldo = saldo;
 	}
 
-	public String getNumeroConta() {
+	public String getNUMEROCONTA() {
 		return numeroConta;
 	}
 
@@ -16,7 +16,7 @@ public class ContaBancaria implements MovimentacaoBancaria {
 		this.numeroConta = numeroConta;
 	}
 
-	public double getSaldo() {
+	public double getSALDO() {
 		return saldo;
 	}
 
@@ -25,7 +25,7 @@ public class ContaBancaria implements MovimentacaoBancaria {
 	}
 
 	@Override
-	public void depositar(double valor) {
+	public void DEPOSITAR(double valor) {
 		if (valor != 0) {
 
 			saldo += valor;
@@ -37,7 +37,7 @@ public class ContaBancaria implements MovimentacaoBancaria {
 	}
 
 	@Override
-	public void sacar(double valor) throws SaldoInsuficienteException {
+	public void SACAR(double valor) throws SaldoInsuficienteException {
 		if (valor != 0 || valor < saldo) {
 			saldo -= valor;
 
