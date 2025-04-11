@@ -9,14 +9,15 @@ class ContaCorrente extends ContaBancaria {
 		this.limiteChequeEspecial = limiteChequeEspecial;
 	}
 
-	@Override
-<<<<<<< HEAD
+
+/*
 	public void SACAR(double valor) throws SaldoInsuficienteException {
 		if (valor > getSALDO() + limiteChequeEspecial) {
 			throw new SaldoInsuficienteException("Saldo insuficiente.");
 		}
 		setSaldo(getSALDO() - valor);
-=======
+*/
+    @Override
 	public boolean SACAR(double valor) throws SaldoInsuficienteException {
 		// falso se valor maior que saldo c/ limite
 		if (valor > getSALDO() + limiteChequeEspecial) {
@@ -28,6 +29,5 @@ class ContaCorrente extends ContaBancaria {
 		}
 		setSaldo(getSALDO() - valor);
 		return true;
->>>>>>> parent of cd75b71 (refacture: rename methods)
 	}
 }
