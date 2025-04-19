@@ -18,26 +18,27 @@ public class TesteBanco {
 
         // Componentes da interface gráfica
         JButton depositButton = new JButton("Depositar");
+        JButton depositPoupancaButton = new JButton("Depositar na Poupança");
         JButton withdrawButton = new JButton("Sacar");
+        JButton withdrawPoupancaButton = new JButton("Sacar da Conta Poupança");
         JButton rendimentoButton = new JButton("Calcular Rendimento");
+        JButton TransferirCorrentePoupancaButton = new JButton("Transferência Corrente -> Poupança");
+        JButton TransferirPoupancaCorrenteButton = new JButton("Transferência Poupança -> Corrente");
 
-<<<<<<< HEAD
-        JTextField amountField = new JTextField(10);
-=======
+        //JTextField amountField = new JTextField(10);
         JTextField amountCorrenteField = new JTextField(10);
-        JTextField amountPoupancaField = new JTextField(10);
->>>>>>> parent of cd75b71 (refacture: rename methods)
-        JLabel balanceLabelCorrente = new JLabel("Saldo Conta Corrente: " + contaCorrente.getSALDO());
-        JLabel balanceLabelPoupanca = new JLabel("Saldo Conta Poupança: " + contaPoupanca.getSALDO());
+        JTextField amountPoupancaField = new JTextField(20);
+
+        JLabel balanceLabelCorrente = new JLabel("Saldo Conta Corrente: " + contaCorrente.getSALDO() + "\n");
+        JLabel balanceLabelPoupanca = new JLabel("Saldo Conta Poupança: " + contaPoupanca.getSALDO() + "\n");
 
         // Ação para depósito na conta corrente
         depositButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
-                double amount = Double.parseDouble(amountField.getText());
-=======
+
                 double amount = Double.parseDouble(amountCorrenteField.getText());
->>>>>>> parent of cd75b71 (refacture: rename methods)
+
+                //double amount = Double.parseDouble(amountCorrenteField.getText());
                 contaCorrente.DEPOSITAR(amount);
                 balanceLabelCorrente.setText("Saldo Conta Corrente: " + contaCorrente.getSALDO());
             }
@@ -47,14 +48,14 @@ public class TesteBanco {
         withdrawButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-<<<<<<< HEAD
-                    double amount = Double.parseDouble(amountField.getText());
-                    contaCorrente.SACAR(amount);
-                    balanceLabelCorrente.setText("Saldo Conta Corrente: " + contaCorrente.getSALDO());
-=======
+
                     double amount = Double.parseDouble(amountCorrenteField.getText());
                     contaCorrente.SACAR(amount);
                     balanceLabelCorrente.setText("Saldo Conta Corrente: " + contaCorrente.getSALDO());
+
+                  //  double amount = Double.parseDouble(amountCorrenteField.getText());
+                  //  contaCorrente.SACAR(amount);
+                  //  balanceLabelCorrente.setText("Saldo Conta Corrente: " + contaCorrente.getSALDO());
                 } catch (SaldoInsuficienteException ex) {
                     JOptionPane.showMessageDialog(frame, ex.getMessage());
                 }
@@ -96,7 +97,7 @@ public class TesteBanco {
                 }
             }
         });
-        // Ação para transferir Corrente para Conta (pendente)
+        // Ação para transferir Corrente para Poupança (pendente)
         TransferirCorrentePoupancaButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -104,7 +105,6 @@ public class TesteBanco {
                     contaCorrente.TRANSFERIR(contaPoupanca, amount);
                     balanceLabelCorrente.setText("Saldo Conta Corrente: " + contaCorrente.getSALDO());
                     balanceLabelPoupanca.setText("Saldo Conta Poupança: " + contaPoupanca.getSALDO());
->>>>>>> parent of cd75b71 (refacture: rename methods)
                 } catch (SaldoInsuficienteException ex) {
                     JOptionPane.showMessageDialog(frame, ex.getMessage());
                 }
@@ -120,12 +120,19 @@ public class TesteBanco {
         });
 
         // Adiciona componentes ao frame
-        frame.add(new JLabel("Valor:"));
-        frame.add(amountField);
+        frame.add(new JLabel("Valor Conta Corrente:"));
+        frame.add(amountCorrenteField);
         frame.add(depositButton);
         frame.add(withdrawButton);
-        frame.add(rendimentoButton);
+        frame.add(TransferirCorrentePoupancaButton);
         frame.add(balanceLabelCorrente);
+
+        frame.add(new JLabel("Valor Conta Poupança: "));
+        frame.add(amountPoupancaField);
+        frame.add(depositPoupancaButton);
+        frame.add(withdrawPoupancaButton);
+        frame.add(TransferirPoupancaCorrenteButton);
+        frame.add(rendimentoButton);
         frame.add(balanceLabelPoupanca);
 
         frame.setVisible(true);
