@@ -13,7 +13,7 @@ public class TesteBanco {
         JFrame frame = new JFrame("Sistema Bancário");
         frame.setTitle("Sistema Bancário");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 300);
+        frame.setSize(900, 250); // pra mudar tamanho tela
         frame.setLayout(new FlowLayout());
 
         // Componentes da interface gráfica

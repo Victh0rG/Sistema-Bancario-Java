@@ -1,3 +1,4 @@
 .idea
-out
-Sistema-Bancario-Java.iml
+/out
+/*.iml
+*.class
