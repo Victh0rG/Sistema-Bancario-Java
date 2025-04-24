@@ -8,7 +8,7 @@ class ContaCorrente extends ContaBancaria {
 	}
 
 	@Override
-	public boolean SACAR(double valor) throws SaldoInsuficienteException {
+	public boolean sacar(double valor) throws SaldoInsuficienteException {
 		// falso se valor maior que saldo c/ limite
 		if (valor > getSaldo() + limiteChequeEspecial) {
 			throw new SaldoInsuficienteException("Saldo insuficiente.");
