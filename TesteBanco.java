@@ -18,18 +18,11 @@ public class TesteBanco {
         frame.setLayout(new FlowLayout());
 
         // Componentes da interface gráfica
-
-        // Componentes Corrente
-        JButton TransferirPoupancaCorrenteButton = new JButton("Transferir");
-        JButton depositCorrenteButton = new JButton("Depositar");
-        JButton withdrawCorrenteButton = new JButton("Sacar");
-
-        //Componentes Poupanca
-        JButton TransferirCorrentePoupancaButton = new JButton("Transferir");
-
-        JButton depositPoupancaButton = new JButton("Depositar");
-        JButton withdrawPoupancaButton = new JButton("Sacar");
+        JButton depositButton = new JButton("Depositar");
+        JButton withdrawButton = new JButton("Sacar");
         JButton rendimentoButton = new JButton("Calcular Rendimento");
+        JButton TransferirCorrentePoupancaButton = new JButton("Transferência Corrente -> Poupança");
+        JButton TransferirPoupancaCorrenteButton = new JButton("Transferência Poupança -> Corrente");
 
         JTextField amountCorrenteField = new JTextField(10);
         JTextField amountPoupancaField = new JTextField(10);
@@ -39,6 +32,7 @@ public class TesteBanco {
         // Ação para depósito na conta corrente
         depositCorrenteButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+
                 double amount = Double.parseDouble(amountCorrenteField.getText());
                 contaCorrente.depositar(amount);
                 balanceLabelCorrente.setText("Saldo Conta Corrente: " + contaCorrente.getSaldo());
@@ -49,6 +43,7 @@ public class TesteBanco {
         withdrawCorrenteButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
+
                     double amount = Double.parseDouble(amountCorrenteField.getText());
                     contaCorrente.sacar(amount);
                     balanceLabelCorrente.setText("Saldo Conta Corrente: " + contaCorrente.getSaldo());
@@ -93,7 +88,6 @@ public class TesteBanco {
                 }
             }
         });
-
         // Ação para transferir Corrente para Conta (pendente)
         TransferirCorrentePoupancaButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -129,6 +123,13 @@ public class TesteBanco {
         frame.add(depositPoupancaButton);
         frame.add(withdrawPoupancaButton);
         frame.add(TransferirPoupancaCorrenteButton);
+
+        frame.add(new JLabel("Valor Conta Poupança: "));
+        frame.add(amountPoupancaField);
+        frame.add(depositPoupancaButton);
+        frame.add(withdrawPoupancaButton);
+        frame.add(TransferirPoupancaCorrenteButton);
+        frame.add(rendimentoButton);
         frame.add(balanceLabelPoupanca);
 
         frame.add(rendimentoButton);
