@@ -13,8 +13,8 @@ public class TesteBanco {
         JFrame frame = new JFrame("Sistema Bancário");
         frame.setTitle("Sistema Bancário");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(900, 250);
-        frame.setLayout(new FlowLayout());
+        frame.setSize(500, 400);
+        frame.setLayout(new GridLayout(7, 1, 1, 1)); // 6 linhas, 1 colunas, com espaçamento minimo
 
         // Componentes da interface gráfica
         JButton depositButton = new JButton("Depositar");
@@ -22,8 +22,8 @@ public class TesteBanco {
         JButton withdrawButton = new JButton("Sacar");
         JButton withdrawPoupancaButton = new JButton("Sacar da Conta Poupança");
         JButton rendimentoButton = new JButton("Calcular Rendimento");
-        JButton TransferirCorrentePoupancaButton = new JButton("Transferência Corrente -> Poupança");
-        JButton TransferirPoupancaCorrenteButton = new JButton("Transferência Poupança -> Corrente");
+        JButton TransferirCorrentePoupancaButton = new JButton("Transferência para Poupança");
+        JButton TransferirPoupancaCorrenteButton = new JButton("Transferência para Corrente");
 
         //JTextField amountField = new JTextField(10);
         JTextField amountCorrenteField = new JTextField(10);
@@ -90,6 +90,7 @@ public class TesteBanco {
                 }
             }
         });
+
         // Ação para transferir Corrente para Poupança (pendente)
         TransferirCorrentePoupancaButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -112,21 +113,55 @@ public class TesteBanco {
             }
         });
 
-        // Adiciona componentes ao frame
-        frame.add(new JLabel("Valor Conta Corrente:"));
-        frame.add(amountCorrenteField);
-        frame.add(depositButton);
-        frame.add(withdrawButton);
-        frame.add(TransferirCorrentePoupancaButton);
-        frame.add(balanceLabelCorrente);
+        // Configurar labels e inputs
+        Dimension fieldSize = new Dimension(300, 20);
 
-        frame.add(new JLabel("Valor Conta Poupança: "));
-        frame.add(amountPoupancaField);
-        frame.add(depositPoupancaButton);
-        frame.add(withdrawPoupancaButton);
-        frame.add(TransferirPoupancaCorrenteButton);
-        frame.add(rendimentoButton);
-        frame.add(balanceLabelPoupanca);
+        amountCorrenteField.setPreferredSize(fieldSize);
+        amountPoupancaField.setPreferredSize(fieldSize);
+
+
+        depositPoupancaButton.setPreferredSize(new Dimension(200, 25));
+        withdrawPoupancaButton.setPreferredSize(new Dimension(200, 25));
+        rendimentoButton.setPreferredSize(new Dimension(200, 25));
+        TransferirCorrentePoupancaButton.setPreferredSize(new Dimension(200, 25));
+        TransferirPoupancaCorrenteButton.setPreferredSize(new Dimension(200, 25));
+
+
+        // Adiciona componentes ao frame
+        JPanel row0 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
+        JPanel row1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        row1.add(new JLabel("Valor Conta Corrente:"));
+        row1.add(amountCorrenteField);
+        row1.add(balanceLabelCorrente);
+
+        JPanel row2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        row2.add(depositButton);
+        row2.add(withdrawButton);
+        row2.add(TransferirCorrentePoupancaButton);
+
+        JPanel row3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
+        JPanel row4 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        row4.add(new JLabel("Valor Conta Poupança: "));
+        row4.add(amountPoupancaField);
+        row4.add(balanceLabelPoupanca);
+
+        JPanel row5 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        row5.add(depositPoupancaButton);
+        row5.add(withdrawPoupancaButton);
+
+
+        JPanel row6 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        row6.add(TransferirPoupancaCorrenteButton);
+        row6.add(rendimentoButton);
+
+
+        frame.add(row1);
+        frame.add(row2);
+        frame.add(row4);
+        frame.add(row5);
+        frame.add(row6);
 
         frame.setVisible(true);
     }
