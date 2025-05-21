@@ -13,8 +13,8 @@ public class TesteBanco {
         JFrame frame = new JFrame("Sistema Bancário");
         frame.setTitle("Sistema Bancário");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 400);
-        frame.setLayout(new GridLayout(7, 1, 1, 1)); // 6 linhas, 1 colunas, com espaçamento minimo
+        frame.setSize(450, 400);
+        frame.setLayout(new GridLayout(6, 1, 1, 1)); // 6 linhas, 1 colunas, com espaçamento minimo
 
         // Componentes da interface gráfica
         JButton depositButton = new JButton("Depositar");
