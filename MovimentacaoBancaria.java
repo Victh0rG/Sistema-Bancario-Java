@@ -1,7 +1,9 @@
 
 public interface MovimentacaoBancaria {
 
-	public void depositar(double valor);
+	 void depositar(double valor);
 
-	public void sacar(double valor) throws SaldoInsuficienteException;
+	 boolean sacar(double valor) throws SaldoInsuficienteException;
+
+	 boolean transferir(ContaBancaria destino, double valor) throws SaldoInsuficienteException;
 }
